@@ -1,5 +1,19 @@
 using UnityEngine;
 
+public enum NoteType {
+    Swat,
+    Stomp,
+    Spray,
+    Bat
+}
+
+[System.Serializable]
+public struct NoteData {
+    public float beat;
+    public int lane;
+    public NoteType noteType;
+}
+
 public class NoteNode : MonoBehaviour {
     private static float beatsShownInAdvance;
 
