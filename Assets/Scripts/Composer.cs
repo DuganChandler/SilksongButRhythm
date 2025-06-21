@@ -52,21 +52,19 @@ public class Composer : MonoBehaviour {
 
         if (nextIndex < notes.Count && notes[nextIndex].beat < songPosInBeats + beatsShownInAdvance) {
             var noteNode = Instantiate(noteNodePrefab).GetComponent<NoteNode>();
-            noteNode.name = "Note " +  notes[nextIndex].beat.ToString();
-            noteNode.noteData = notes[nextIndex];
 
-            LaneManager.Instance.AddNoteToLane(noteNode);
+            NoteData currentNoteData = notes[nextIndex];
 
-            Vector2 spawnPos = noteSpawnPoints[noteNode.noteData.lane].position;
-            Vector2 removePos = noteDeathPoints[noteNode.noteData.lane].position;
-            Vector2 hitPos = noteHitPoints[noteNode.noteData.lane].position;
-            noteNode.Init(spawnPos, hitPos, removePos, beatsShownInAdvance, noteNode.noteData.beat, 0.5f);
+            Vector2 spawnPos = noteSpawnPoints[currentNoteData.lane].position;
+            Vector2 removePos = noteDeathPoints[currentNoteData.lane].position;
+            Vector2 hitPos = noteHitPoints[currentNoteData.lane].position;
+            noteNode.Init(spawnPos, hitPos, removePos, beatsShownInAdvance, currentNoteData.beat, 0.5f);
 
             nextIndex++;
         }
     }
 
-    void HandleNoteDeath(Direction lane) {
-        //Debug.Log("YOU GOT REKT LOSER");
+    void HandleNoteDeath() {
+        Debug.Log("YOU GOT REKT LOSER");
     }
 }

@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 7200293}
   - component: {fileID: 7200292}
   m_Layer: 0
-  m_Name: East
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 203796875}
   - component: {fileID: 203796874}
   m_Layer: 0
-  m_Name: North
+  m_Name: Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 630709352}
   - component: {fileID: 630709351}
   m_Layer: 0
-  m_Name: South
+  m_Name: Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 1224659724}
   - component: {fileID: 1224659725}
   m_Layer: 0
-  m_Name: PlayerDrummer
+  m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -561,14 +561,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e0e44d176ea2746a916fb46e9b670c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  northSpriteRenderer: {fileID: 203796874}
-  southSpriteRenderer: {fileID: 630709351}
-  eastSpriteRenderer: {fileID: 7200292}
-  westSpriteRenderer: {fileID: 1735566653}
-  northColor: {r: 0, g: 1, b: 0, a: 1}
-  southColor: {r: 0, g: 0, b: 1, a: 1}
-  eastColor: {r: 1, g: 0, b: 0, a: 1}
-  westColor: {r: 1, g: 1, b: 0, a: 1}
+  upSpriteRenderer: {fileID: 203796874}
+  downSpriteRenderer: {fileID: 630709351}
+  leftSpriteRenderer: {fileID: 1735566653}
+  rightSpriteRenderer: {fileID: 7200292}
+  upColor: {r: 0, g: 1, b: 0, a: 1}
+  downColor: {r: 0, g: 0.61093307, b: 1, a: 1}
+  leftColor: {r: 1, g: 1, b: 0, a: 1}
+  rightColor: {r: 1, g: 0, b: 0, a: 1}
   normalColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
 --- !u!1 &1735566652
 GameObject:
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 1735566654}
   - component: {fileID: 1735566653}
   m_Layer: 0
-  m_Name: West
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -665,5 +665,5 @@ SceneRoots:
   - {fileID: 1224659724}
   - {fileID: 203796875}
   - {fileID: 630709352}
-  - {fileID: 7200293}
   - {fileID: 1735566654}
+  - {fileID: 7200293}

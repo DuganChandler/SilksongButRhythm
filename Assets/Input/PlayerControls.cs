@@ -108,15 +108,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Up"",
-                    ""type"": ""Button"",
-                    ""id"": ""3b60f0c9-92c5-4840-8c7a-92fe69d61a45"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -394,17 +385,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ActionDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""78cba43d-d277-4ad4-bf69-a5b7d33c6532"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Up"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -415,7 +395,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_FaceDirection = m_Player.FindAction("FaceDirection", throwIfNotFound: true);
         m_Player_ActionDirection = m_Player.FindAction("ActionDirection", throwIfNotFound: true);
-        m_Player_Up = m_Player.FindAction("Up", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -498,7 +477,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_FaceDirection;
     private readonly InputAction m_Player_ActionDirection;
-    private readonly InputAction m_Player_Up;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -518,10 +496,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/ActionDirection".
         /// </summary>
         public InputAction @ActionDirection => m_Wrapper.m_Player_ActionDirection;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Up".
-        /// </summary>
-        public InputAction @Up => m_Wrapper.m_Player_Up;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -554,9 +528,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ActionDirection.started += instance.OnActionDirection;
             @ActionDirection.performed += instance.OnActionDirection;
             @ActionDirection.canceled += instance.OnActionDirection;
-            @Up.started += instance.OnUp;
-            @Up.performed += instance.OnUp;
-            @Up.canceled += instance.OnUp;
         }
 
         /// <summary>
@@ -574,9 +545,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ActionDirection.started -= instance.OnActionDirection;
             @ActionDirection.performed -= instance.OnActionDirection;
             @ActionDirection.canceled -= instance.OnActionDirection;
-            @Up.started -= instance.OnUp;
-            @Up.performed -= instance.OnUp;
-            @Up.canceled -= instance.OnUp;
         }
 
         /// <summary>
@@ -631,12 +599,5 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnActionDirection(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Up" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnUp(InputAction.CallbackContext context);
     }
 }
