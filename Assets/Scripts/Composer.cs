@@ -1,41 +1,40 @@
 using UnityEngine;
 
 public class Composer : MonoBehaviour {
-    float songPosition;
-    float songPosInBeats;
-    float secPerBeat;
-    // how much time (in secs) has passed since song started
-    float dsptimesong;
+    public static float songPosInBeats;
 
-    // song info
+    public static float beatsShownInAdvance = 4f;
+
     [SerializeField] private float bpm;
-    float[] notes = {1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 12f, 13f, 14f, 15f, 17f, 18f, 19f, 20f};
-    int nextIndex = 0;
-
-    public AudioClip song;
-
-    public static float beatsShownInAdvance = 1f;
+    [SerializeField] private AudioClip song;
+    [SerializeField] private Transform[] noteSpawnPoints;
+    [SerializeField] private Transform[] noteDeathPoints;
+    [SerializeField] private GameObject noteNodePrefab;
 
     private AudioSource audioSource;
+    private double dspStartTime;
+    private float secPerBeat;
+    private int nextIndex = 0;
+    private float[] notes = {1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 12f, 13f, 14f, 15f, 17f, 18f, 19f, 20f};
 
     void Start() {
         secPerBeat = 60f / bpm;
-
-        dsptimesong = (float) AudioSettings.dspTime;
-
+        dspStartTime = AudioSettings.dspTime;
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = song;
         audioSource.Play();
     }
 
     void Update() {
-        songPosition = (float) (AudioSettings.dspTime - dsptimesong); 
-
+        float songPosition = (float)(AudioSettings.dspTime - dspStartTime);
         songPosInBeats = songPosition / secPerBeat;
 
         if (nextIndex < notes.Length && notes[nextIndex] < songPosInBeats + beatsShownInAdvance) {
-            // Instantiated
-            Debug.Log(notes[nextIndex]);
+            var noteNode = Instantiate(noteNodePrefab).GetComponent<NoteNode>();
+            Vector2 spawnPos = noteSpawnPoints[0].position;
+            Vector2 removePos = noteDeathPoints[0].position;
+            noteNode.Init(spawnPos, removePos, beatsShownInAdvance, notes[nextIndex], songPosInBeats);
+
             nextIndex++;
         }
     }
