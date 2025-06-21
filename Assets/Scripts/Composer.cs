@@ -24,6 +24,14 @@ public class Composer : MonoBehaviour {
     void Awake() {
     }
 
+    void OnEnable() {
+        NoteNode.OnDeath += HandleNoteDeath;
+    }
+
+    void OnDisable() {
+        NoteNode.OnDeath -= HandleNoteDeath;
+    }
+
     void Start() {
         chart = chartLoader.GetChartByName("Song1"); //GameManager.Instance.currentSelectedChart;
         Debug.Log(chart);
@@ -54,5 +62,9 @@ public class Composer : MonoBehaviour {
 
             nextIndex++;
         }
+    }
+
+    void HandleNoteDeath() {
+        Debug.Log("YOU GOT REKT LOSER");
     }
 }
