@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class ChartLoader : MonoBehaviour {
     public string pathToCharts = "Charts/";
-    [SerializeField] private List<string> chartFileNames;
+    // [SerializeField] private List<string> chartFileNames;
+    [SerializeField] private ChartLibrary chartLibrary; 
 
     public Dictionary<string, Chart> charts = new();
 
     void Awake() {
         LoadCharts();     
+        GetChartByName("Song1");
     }
 
     public void LoadCharts() {
-        foreach(string fileName in chartFileNames) {
+        foreach(ChartData chart in chartLibrary.Charts) {
+            string fileName = chart.Name;
             var csv = Resources.Load<TextAsset>($"{pathToCharts}{fileName}");
             if (csv == null) {
                 Debug.LogError($"Missing CSV: {fileName}");
@@ -21,7 +24,8 @@ public class ChartLoader : MonoBehaviour {
             }
 
             Chart newChart = new() {
-                notes = ParseCsv(csv)
+                notes = ParseCsv(csv),
+                chartData = GetChartDataByName(fileName)
             };
 
             charts[fileName] = newChart;
@@ -47,6 +51,17 @@ public class ChartLoader : MonoBehaviour {
     }
 
     public Chart GetChartByName(string name) {
+        GameManager.Instance.currentSelectedChart = charts[name];
         return charts[name];
+    }
+
+    public ChartData GetChartDataByName(string name) {
+        foreach(ChartData chartData in chartLibrary.Charts) {
+            if (chartData.Name == name) {
+                return chartData;
+            }
+        }
+        Debug.LogError($"Chart of name {name}, does not have chartData");
+        return null;
     }
 }

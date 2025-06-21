@@ -499,6 +499,7 @@ MonoBehaviour:
   pathToCharts: Charts/
   chartFileNames:
   - Song1
+  chartLibrary: {fileID: 11400000, guid: 33f2ef641873a894f9e29faaab1e3726, type: 2}
 --- !u!4 &1917113382
 Transform:
   m_ObjectHideFlags: 0
