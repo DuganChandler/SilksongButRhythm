@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum NoteType {
@@ -24,6 +25,8 @@ public class NoteNode : MonoBehaviour {
     private float deathOffsetBeats;
     private float spawnBeat, hitBeat, deathBeat;
 
+    public static event Action OnDeath;
+
     void Update() {
         float currentBeat = Composer.songPosInBeats;
 
@@ -35,7 +38,7 @@ public class NoteNode : MonoBehaviour {
             transform.position = Vector2.Lerp(hitPos, removePos, t2);
 
             if (currentBeat >= deathBeat) {
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
         }
     }
@@ -52,5 +55,9 @@ public class NoteNode : MonoBehaviour {
         deathBeat = beatOfThisNote + deathOffsetBeats;
 
         transform.position = spawnPos;
+    }
+
+    void OnDestroy() {
+        OnDeath?.Invoke();
     }
 }
