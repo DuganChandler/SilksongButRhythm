@@ -1,42 +1,36 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerDrummer : MonoBehaviour
 {
     [Header("Test Object")]
-    [SerializeField] private SpriteRenderer upSpriteRenderer;
-    [SerializeField] private SpriteRenderer downSpriteRenderer;
-    [SerializeField] private SpriteRenderer leftSpriteRenderer;
-    [SerializeField] private SpriteRenderer rightSpriteRenderer;
+    [SerializeField] private SpriteRenderer northSpriteRenderer;
+    [SerializeField] private SpriteRenderer southSpriteRenderer;
+    [SerializeField] private SpriteRenderer eastSpriteRenderer;
+    [SerializeField] private SpriteRenderer westSpriteRenderer;
 
     [Header("Colors")]
-    [SerializeField] private Color upColor;
-    [SerializeField] private Color downColor;
-    [SerializeField] private Color leftColor;
-    [SerializeField] private Color rightColor;
-    [SerializeField] private Color normalColor;
+    [SerializeField] private Color northColor = Color.green;
+    [SerializeField] private Color southColor = Color.blue;
+    [SerializeField] private Color eastColor = Color.red;
+    [SerializeField] private Color westColor = Color.yellow;
+    [SerializeField] private Color normalColor = Color.grey;
 
-    private SpriteRenderer[] SpriteRenderers
-    {
-        get
-        {
-            return new SpriteRenderer[] {upSpriteRenderer, downSpriteRenderer, leftSpriteRenderer, rightSpriteRenderer};
-        }
-    }
-    private Color[] Colors
-    {
-        get
-        {
-            return new Color[] { upColor, downColor, leftColor, rightColor };
-        }
-    }
+    private SpriteRenderer[] SpriteRenderers => new SpriteRenderer[] { northSpriteRenderer, southSpriteRenderer, eastSpriteRenderer, westSpriteRenderer };
+    private Color[] Colors => new Color[] { northColor, southColor, eastColor, westColor };
 
     private PlayerControls playerActions;
     private PlayerControls.PlayerActions controls;
+
+    private Direction facingDirection = Direction.North;
 
     private void Awake()
     {
         playerActions = new();
         controls = playerActions.Player;
+
+        ActivateSpriteRenderer(facingDirection);
     }
 
     private void OnEnable()
@@ -44,6 +38,7 @@ public class PlayerDrummer : MonoBehaviour
         controls.Enable();
 
         controls.ActionDirection.performed += ActionDirection;
+        controls.FaceDirection.performed += FaceDirection;
     }
 
     private void OnDisable()
@@ -52,57 +47,69 @@ public class PlayerDrummer : MonoBehaviour
         controls.ActionDirection.performed -= ActionDirection;
     }
 
-    private void ActionDirection(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void FaceDirection(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (Vector2DirectionToInt(currentDirection) == -1) return;
+        Vector2 directionalInput = obj.ReadValue<Vector2>();
 
-        Vector2 direction = obj.ReadValue<Vector2>();
-        if (Vector2DirectionToInt(direction) == -1) return;
-
-        SpriteRenderers[Vector2DirectionToInt(currentDirection)].color = Colors[Vector2DirectionToInt(direction)];
-    }
-
-    private void Update()
-    {
-        FaceDirection();
-    }
-
-    private Vector2 prevDirection;
-    private Vector2 currentDirection;
-    private void FaceDirection()
-    {
-        Vector2 directionalInput = controls.FaceDirection.ReadValue<Vector2>();
-
-        if (directionalInput == prevDirection) return;
+        if (Mathf.Abs(directionalInput.x) != 1 && Mathf.Abs(directionalInput.y) != 1) return;
         
+        Direction direction = Vector2ToDirection(directionalInput);
+        if (direction == facingDirection) return;
+
+        ActivateSpriteRenderer(direction);
+        facingDirection = direction;
+    }
+
+    private void ActivateSpriteRenderer(Direction direction)
+    {
         foreach (SpriteRenderer sRend in SpriteRenderers)
         {
-            sRend.color = normalColor;
+            sRend.enabled = false;
         }
 
-        prevDirection = directionalInput;
-
-        if (directionalInput == Vector2.zero || (Mathf.Abs(directionalInput.x) != 1 && Mathf.Abs(directionalInput.y) != 1)) 
+        _ = direction switch
         {
-            foreach (SpriteRenderer sRend in SpriteRenderers)
-            {
-                sRend.enabled = false;
-                currentDirection = Vector2.zero;
-            }
-            return;
-        }
-
-        SpriteRenderers[Vector2DirectionToInt(prevDirection)].enabled = true;
-        currentDirection = prevDirection;
-        print(directionalInput);
+            Direction.North => northSpriteRenderer.enabled = true,
+            Direction.South => southSpriteRenderer.enabled = true,
+            Direction.West => westSpriteRenderer.enabled = true,
+            Direction.East => eastSpriteRenderer.enabled = true,
+            _ => throw new NotImplementedException(),
+        };
     }
 
-    private int Vector2DirectionToInt(Vector2 vector)
+    private void ActionDirection(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (vector.x == 0 && vector.y == 1) return 0;
-        else if (vector.x == 0 && vector.y == -1) return 1;
-        else if (vector.x == -1 && vector.y == 0) return 2;
-        else if (vector.x == 1 && vector.y == 0) return 3;
-        else return -1;
+        Vector2 directionalInput = obj.ReadValue<Vector2>();
+        if (Mathf.Abs(directionalInput.x) != 1 && Mathf.Abs(directionalInput.y) != 1) return;
+
+        Direction actionDirection = Vector2ToDirection(directionalInput);
+
+        SpriteRenderers[DirectionToInt(facingDirection)].color = Colors[DirectionToInt(actionDirection)];
     }
+
+    private int DirectionToInt(Direction dir) => dir switch
+    {
+        Direction.North => 0,
+        Direction.South => 1,
+        Direction.East => 2,
+        Direction.West => 3,
+        _ => throw new System.NotImplementedException(),
+    };
+
+    private Direction Vector2ToDirection(Vector2 vector) 
+    {
+        if (vector == Vector2.up) return Direction.North;
+        else if (vector == Vector2.down) return Direction.South;
+        else if (vector == Vector2.left) return Direction.West;
+        else if (vector == Vector2.right) return Direction.East;
+        else throw new System.NotImplementedException();
+    }
+}
+
+public enum Direction
+{
+    North,
+    East,
+    South,
+    West
 }
