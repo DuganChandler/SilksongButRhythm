@@ -10,6 +10,7 @@ public class Composer : MonoBehaviour {
     [SerializeField] private AudioClip song;
     [SerializeField] private Transform[] noteSpawnPoints;
     [SerializeField] private Transform[] noteDeathPoints;
+    [SerializeField] private Transform[] noteHitPoints;
     [SerializeField] private GameObject noteNodePrefab;
     [SerializeField] private ChartLoader chartLoader;
 
@@ -48,7 +49,8 @@ public class Composer : MonoBehaviour {
 
             Vector2 spawnPos = noteSpawnPoints[currentNoteData.lane].position;
             Vector2 removePos = noteDeathPoints[currentNoteData.lane].position;
-            noteNode.Init(spawnPos, removePos, beatsShownInAdvance, currentNoteData.beat, songPosInBeats);
+            Vector2 hitPos = noteHitPoints[currentNoteData.lane].position;
+            noteNode.Init(spawnPos, hitPos, removePos, beatsShownInAdvance, currentNoteData.beat, 0.5f);
 
             nextIndex++;
         }
