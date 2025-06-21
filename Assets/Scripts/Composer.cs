@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Composer : MonoBehaviour {
@@ -9,16 +10,36 @@ public class Composer : MonoBehaviour {
     [SerializeField] private AudioClip song;
     [SerializeField] private Transform[] noteSpawnPoints;
     [SerializeField] private Transform[] noteDeathPoints;
+    [SerializeField] private Transform[] noteHitPoints;
     [SerializeField] private GameObject noteNodePrefab;
+    [SerializeField] private ChartLoader chartLoader;
 
     private AudioSource audioSource;
     private double dspStartTime;
     private float secPerBeat;
     private int nextIndex = 0;
-    private float[] notes = {1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 12f, 13f, 14f, 15f, 17f, 18f, 19f, 20f};
+    private List<NoteData> notes;// = {1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 12f, 13f, 14f, 15f, 17f, 18f, 19f, 20f};
+    private Chart chart;
+
+    void Awake() {
+    }
+
+    void OnEnable() {
+        NoteNode.OnDeath += HandleNoteDeath;
+    }
+
+    void OnDisable() {
+        NoteNode.OnDeath -= HandleNoteDeath;
+    }
 
     void Start() {
-        secPerBeat = 60f / bpm;
+        chart = chartLoader.GetChartByName("Song1"); //GameManager.Instance.currentSelectedChart;
+        Debug.Log(chart);
+        secPerBeat = 60f / chart.chartData.Bpm;
+        notes = chart.notes;
+
+        Debug.Log(notes);
+
         dspStartTime = AudioSettings.dspTime;
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = song;
@@ -29,13 +50,21 @@ public class Composer : MonoBehaviour {
         float songPosition = (float)(AudioSettings.dspTime - dspStartTime);
         songPosInBeats = songPosition / secPerBeat;
 
-        if (nextIndex < notes.Length && notes[nextIndex] < songPosInBeats + beatsShownInAdvance) {
+        if (nextIndex < notes.Count && notes[nextIndex].beat < songPosInBeats + beatsShownInAdvance) {
             var noteNode = Instantiate(noteNodePrefab).GetComponent<NoteNode>();
-            Vector2 spawnPos = noteSpawnPoints[0].position;
-            Vector2 removePos = noteDeathPoints[0].position;
-            noteNode.Init(spawnPos, removePos, beatsShownInAdvance, notes[nextIndex], songPosInBeats);
+
+            NoteData currentNoteData = notes[nextIndex];
+
+            Vector2 spawnPos = noteSpawnPoints[currentNoteData.lane].position;
+            Vector2 removePos = noteDeathPoints[currentNoteData.lane].position;
+            Vector2 hitPos = noteHitPoints[currentNoteData.lane].position;
+            noteNode.Init(spawnPos, hitPos, removePos, beatsShownInAdvance, currentNoteData.beat, 0.5f);
 
             nextIndex++;
         }
+    }
+
+    void HandleNoteDeath() {
+        Debug.Log("YOU GOT REKT LOSER");
     }
 }
