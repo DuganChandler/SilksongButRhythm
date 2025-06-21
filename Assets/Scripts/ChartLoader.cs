@@ -51,7 +51,6 @@ public class ChartLoader : MonoBehaviour {
     }
 
     public Chart GetChartByName(string name) {
-        GameManager.Instance.currentSelectedChart = charts[name];
         return charts[name];
     }
 
