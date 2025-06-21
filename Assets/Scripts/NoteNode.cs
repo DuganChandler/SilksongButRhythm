@@ -9,10 +9,25 @@ public enum NoteType {
 }
 
 [System.Serializable]
-public struct NoteData {
+public struct NoteData
+{
     public float beat;
     public int lane;
     public NoteType noteType;
+
+    private const int EASTLANE_NUM = 0;
+    private const int SOUTHLANE_NUM = 1;
+    private const int WESTLANE_NUM = 2;
+    private const int NORTHLANE_NUM = 3;
+
+    public readonly Direction LaneDirection => lane switch
+    {
+        NORTHLANE_NUM => Direction.North,
+        EASTLANE_NUM => Direction.East,
+        SOUTHLANE_NUM => Direction.South,
+        WESTLANE_NUM => Direction.West,
+        _ => throw new NotImplementedException(),
+    };
 }
 
 public class NoteNode : MonoBehaviour {
@@ -24,8 +39,10 @@ public class NoteNode : MonoBehaviour {
     private float beatOfThisNote;
     private float deathOffsetBeats;
     private float spawnBeat, hitBeat, deathBeat;
+    
+    public NoteData noteData;
 
-    public static event Action OnDeath;
+    public static event Action<Direction> OnDeath;
 
     void Update() {
         float currentBeat = Composer.songPosInBeats;
@@ -58,6 +75,6 @@ public class NoteNode : MonoBehaviour {
     }
 
     void OnDestroy() {
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(noteData.LaneDirection);
     }
 }
