@@ -11,6 +11,7 @@ public class Composer : MonoBehaviour {
     [SerializeField] private Transform[] noteSpawnPoints;
     [SerializeField] private Transform[] noteDeathPoints;
     [SerializeField] private GameObject noteNodePrefab;
+    [SerializeField] private ChartLoader chartLoader;
 
     private AudioSource audioSource;
     private double dspStartTime;
@@ -20,10 +21,11 @@ public class Composer : MonoBehaviour {
     private Chart chart;
 
     void Awake() {
-        chart = GameManager.Instance.currentSelectedChart;
     }
 
     void Start() {
+        chart = chartLoader.GetChartByName("Song1"); //GameManager.Instance.currentSelectedChart;
+        Debug.Log(chart);
         secPerBeat = 60f / chart.chartData.Bpm;
         notes = chart.notes;
 
@@ -41,9 +43,12 @@ public class Composer : MonoBehaviour {
 
         if (nextIndex < notes.Count && notes[nextIndex].beat < songPosInBeats + beatsShownInAdvance) {
             var noteNode = Instantiate(noteNodePrefab).GetComponent<NoteNode>();
-            Vector2 spawnPos = noteSpawnPoints[0].position;
-            Vector2 removePos = noteDeathPoints[0].position;
-            noteNode.Init(spawnPos, removePos, beatsShownInAdvance, notes[nextIndex].beat, songPosInBeats);
+
+            NoteData currentNoteData = notes[nextIndex];
+
+            Vector2 spawnPos = noteSpawnPoints[currentNoteData.lane].position;
+            Vector2 removePos = noteDeathPoints[currentNoteData.lane].position;
+            noteNode.Init(spawnPos, removePos, beatsShownInAdvance, currentNoteData.beat, songPosInBeats);
 
             nextIndex++;
         }
