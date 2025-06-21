@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Composer : MonoBehaviour {
@@ -7,12 +9,14 @@ public class Composer : MonoBehaviour {
     public static float beatsShownInAdvance = 4f;
 
     [SerializeField] private float bpm;
-    [SerializeField] private AudioClip song;
     [SerializeField] private Transform[] noteSpawnPoints;
     [SerializeField] private Transform[] noteDeathPoints;
     [SerializeField] private Transform[] noteHitPoints;
     [SerializeField] private GameObject noteNodePrefab;
     [SerializeField] private ChartLoader chartLoader;
+
+    [SerializeField] private GameObject songStartingPanel;
+    [SerializeField] private TextMeshProUGUI songStartingText;
 
     private AudioSource audioSource;
     private double dspStartTime;
@@ -20,7 +24,9 @@ public class Composer : MonoBehaviour {
     private int nextIndex = 0;
     private List<NoteData> notes;// = {1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 12f, 13f, 14f, 15f, 17f, 18f, 19f, 20f};
     private Chart chart;
+    private AudioClip song;
 
+    public bool songStarted = false;
     void Awake() {
     }
 
@@ -33,20 +39,40 @@ public class Composer : MonoBehaviour {
     }
 
     void Start() {
-        chart = chartLoader.GetChartByName("Song1"); //GameManager.Instance.currentSelectedChart;
-        Debug.Log(chart);
+        chart = GameManager.Instance.currentSelectedChart;
+        song = chart.chartData.Song;
+        // Debug.Log(chart);
         secPerBeat = 60f / chart.chartData.Bpm;
         notes = chart.notes;
 
-        Debug.Log(notes);
+        // Debug.Log(notes);
 
-        dspStartTime = AudioSettings.dspTime;
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = song;
+
+        StartCoroutine(DelaySongStart());        
+    }
+
+    IEnumerator DelaySongStart() {
+        songStartingText.text = "Song is about to start!";
+        songStartingPanel.SetActive(true);
+
+        yield return new WaitForSeconds(1.0f);
+        
+        songStartingText.text = "GO!";
+
+        yield return new WaitForSeconds(0.75f);
+
+        songStartingPanel.SetActive(false);
+
         audioSource.Play();
+        dspStartTime = AudioSettings.dspTime;
+        songStarted = true;
+        yield return null;
     }
 
     void Update() {
+        if (!songStarted) return;
         float songPosition = (float)(AudioSettings.dspTime - dspStartTime);
         songPosInBeats = songPosition / secPerBeat;
 
