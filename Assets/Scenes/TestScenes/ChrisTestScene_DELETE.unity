@@ -119,6 +119,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &69471777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 69471779}
+  - component: {fileID: 69471778}
+  m_Layer: 0
+  m_Name: HealthManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &69471778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69471777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7da487b57ec980a4b8dee6db9ee0f66f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 3
+--- !u!4 &69471779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69471777}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.01933739, y: 0.41556734, z: 0.9142448}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &207351022
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bpm: 120
-  song: {fileID: 8300000, guid: b602468c85d1fcd408ac0cdf23b46cc0, type: 3}
   noteSpawnPoints:
   - {fileID: 209752683}
   - {fileID: 702699180}
@@ -536,6 +580,9 @@ MonoBehaviour:
   - {fileID: 881695023}
   noteNodePrefab: {fileID: 7270888009920591902, guid: c545eb625bdc04443ac377883cfc2665, type: 3}
   chartLoader: {fileID: 1917113381}
+  songStartingPanel: {fileID: 0}
+  songStartingText: {fileID: 0}
+  songStarted: 0
 --- !u!4 &342728758
 Transform:
   m_ObjectHideFlags: 0
@@ -1706,3 +1753,4 @@ SceneRoots:
   - {fileID: 1209556249}
   - {fileID: 861498496}
   - {fileID: 609842120}
+  - {fileID: 69471779}
