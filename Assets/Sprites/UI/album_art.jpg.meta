@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 011b800658ba76e468f47fca123289a6
+guid: a0673ad658b7cb74f803681cebdfe753
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7367000479112854452
-    second: Simple Menu Box_0
+      213: 1582558503465060448
+    second: album_art_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Simple Menu Box_0
+      name: album_art_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 32
+        width: 320
+        height: 240
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 3, z: 3, w: 3}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c448856a81823c990800000000000000
-      internalID: -7367000479112854452
+      spriteID: 0680f4bf29066f510800000000000000
+      internalID: 1582558503465060448
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d285059ad63fec847bd9c9a37bf93d3a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Simple Menu Box_0: -7367000479112854452
+      album_art_0: 1582558503465060448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
