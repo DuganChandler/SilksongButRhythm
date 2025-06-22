@@ -12,6 +12,12 @@ public class LaneManager : MonoBehaviour
     [SerializeField] private float goodDistance = 0.5f;
     [SerializeField] private float mehDistance = 1f;
 
+    [Header("Lane Animators")]
+    [SerializeField] private Animator northLaneAnim;
+    [SerializeField] private Animator southLaneAnim;
+    [SerializeField] private Animator eastLaneAnim;
+    [SerializeField] private Animator westLaneAnim;
+
     private Queue<NoteNode> northLane = new();
     private Queue<NoteNode> southLane = new();
     private Queue<NoteNode> eastLane = new();
@@ -91,6 +97,15 @@ public class LaneManager : MonoBehaviour
         _ => throw new System.NotImplementedException(),
     };
 
+    private Animator GetLaneAnim(Direction direction) => direction switch
+    {
+        Direction.North => northLaneAnim,
+        Direction.South => southLaneAnim,
+        Direction.East => eastLaneAnim,
+        Direction.West => westLaneAnim,
+        _ => throw new System.NotImplementedException(),
+    };
+
     private void PrintLane(Direction direction)
     {
         Queue<NoteNode> lane = GetLane(direction);
@@ -109,6 +124,8 @@ public class LaneManager : MonoBehaviour
 
     public void CheckHit(Direction lane, NoteType action)
     {
+        GetLaneAnim(lane).SetTrigger(action.ToString());
+
         // Getting the note in the right lane
         NoteNode noteToCheck;
         bool canHitSomething = lane switch

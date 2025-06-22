@@ -2,10 +2,10 @@ using System;
 using UnityEngine;
 
 public enum NoteType {
-    swat,
-    stomp,
-    spray,
-    bat
+    Swat,
+    Stomp,
+    Spray,
+    Poke
 }
 
 [System.Serializable]
@@ -88,16 +88,16 @@ public class NoteNode : MonoBehaviour {
 
     public void SetSprite(NoteType noteType) {
         switch (noteType) {
-            case NoteType.swat:
+            case NoteType.Swat:
                 spriteRenderer.sprite = fly;
                 break;
-            case NoteType.stomp:
+            case NoteType.Stomp:
                 spriteRenderer.sprite = ant;
                 break;
-            case NoteType.spray:
+            case NoteType.Spray:
                 spriteRenderer.sprite = roach;
                 break;
-            case NoteType.bat:
+            case NoteType.Poke:
                 spriteRenderer.sprite = dung;
                 break;
         }
