@@ -71,7 +71,7 @@ public class PlayerDrummer : MonoBehaviour
                 anim.SetTrigger("Swat");
                 break;
             case NoteType.Stomp:
-                anim.SetTrigger("Stone");
+                anim.SetTrigger("Stomp");
                 break;
             case NoteType.Spray:
                 anim.SetTrigger("Spray");
