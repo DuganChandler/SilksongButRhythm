@@ -72,6 +72,7 @@ public class NoteNode : MonoBehaviour {
         this.removePos = removePos;
         this.beatOfThisNote = beatOfNote;
         this.deathOffsetBeats = deathOffsetBeats;
+        this.hitPos = hitPos;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         SetSprite(noteData.noteType);
