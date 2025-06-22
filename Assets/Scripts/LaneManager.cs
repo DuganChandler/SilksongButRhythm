@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class LaneManager : MonoBehaviour
     private Queue<NoteNode> southLane = new();
     private Queue<NoteNode> eastLane = new();
     private Queue<NoteNode> westLane = new();
+
+    public static event Action<Rank> NoteCompletedAction;
 
     private void Awake()
     {
@@ -125,7 +128,7 @@ public class LaneManager : MonoBehaviour
         float distanceToNote = Mathf.Abs(Composer.songPosInBeats - noteToCheck.noteData.beat);
         if (distanceToNote > noteCheckThreshold) 
         {
-            //return;
+            return;
         }
 
         // Check action
@@ -138,17 +141,24 @@ public class LaneManager : MonoBehaviour
         //// Check accuracy
         if (distanceToNote <= perfectDistance)
         {
+            NoteCompletedAction?.Invoke(Rank.Perfect);
             print("Perfect: " + distanceToNote);
         }
         else if (distanceToNote <= goodDistance)
         {
+            NoteCompletedAction?.Invoke(Rank.Good);
             print("Good: " + distanceToNote);
         }
         else if (distanceToNote <= mehDistance)
         {
+            NoteCompletedAction?.Invoke(Rank.Meh);
             print("Meh: " + distanceToNote);
         }
-        else print("Miss:" + distanceToNote);
+        else
+        {
+            NoteCompletedAction?.Invoke(Rank.Miss);
+            print("Miss:" + distanceToNote);
+        }
 
         Destroy(noteToCheck.gameObject);
     }

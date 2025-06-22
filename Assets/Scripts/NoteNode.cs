@@ -49,6 +49,7 @@ public class NoteNode : MonoBehaviour {
     public NoteData noteData;
 
     public static event Action<Direction> OnDeath;
+    public static event Action HitFood;
 
     void Update() {
         float currentBeat = Composer.songPosInBeats;
@@ -61,6 +62,7 @@ public class NoteNode : MonoBehaviour {
             transform.position = Vector2.Lerp(hitPos, removePos, t2);
 
             if (currentBeat >= deathBeat) {
+                HitFood?.Invoke();
                 Destroy(gameObject);
             }
         }

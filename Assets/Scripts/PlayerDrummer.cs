@@ -2,23 +2,10 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class PlayerDrummer : MonoBehaviour
 {
-    [Header("Test Object")]
-    [SerializeField] private SpriteRenderer northSpriteRenderer;
-    [SerializeField] private SpriteRenderer southSpriteRenderer;
-    [SerializeField] private SpriteRenderer eastSpriteRenderer;
-    [SerializeField] private SpriteRenderer westSpriteRenderer;
-
-    [Header("Colors")]
-    [SerializeField] private Color northColor = Color.green;
-    [SerializeField] private Color southColor = Color.blue;
-    [SerializeField] private Color eastColor = Color.red;
-    [SerializeField] private Color westColor = Color.yellow;
-    [SerializeField] private Color normalColor = Color.grey;
-
-    private SpriteRenderer[] SpriteRenderers => new SpriteRenderer[] { northSpriteRenderer, southSpriteRenderer, eastSpriteRenderer, westSpriteRenderer };
-    private Color[] Colors => new Color[] { northColor, southColor, eastColor, westColor };
+    private Animator anim;
 
     private PlayerControls playerActions;
     private PlayerControls.PlayerActions controls;
@@ -30,7 +17,7 @@ public class PlayerDrummer : MonoBehaviour
         playerActions = new();
         controls = playerActions.Player;
 
-        ActivateSpriteRenderer(facingDirection);
+        TryGetComponent(out anim);
     }
 
     private void OnEnable()
@@ -39,13 +26,6 @@ public class PlayerDrummer : MonoBehaviour
 
         controls.ActionDirection.performed += ActionDirection;
         controls.FaceDirection.performed += FaceDirection;
-    }
-
-    private void Up_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        if (!obj.started) return;
-
-        print("Hit button");
     }
 
     private void OnDisable()
@@ -64,25 +44,18 @@ public class PlayerDrummer : MonoBehaviour
         Direction direction = Vector2ToDirection(directionalInput);
         if (direction == facingDirection) return;
 
-        ActivateSpriteRenderer(direction);
         facingDirection = direction;
-    }
 
-    private void ActivateSpriteRenderer(Direction direction)
-    {
-        foreach (SpriteRenderer sRend in SpriteRenderers)
+        Vector3 euler = transform.localEulerAngles;
+        euler.z = facingDirection switch
         {
-            sRend.enabled = false;
-        }
-
-        _ = direction switch
-        {
-            Direction.North => northSpriteRenderer.enabled = true,
-            Direction.South => southSpriteRenderer.enabled = true,
-            Direction.West => westSpriteRenderer.enabled = true,
-            Direction.East => eastSpriteRenderer.enabled = true,
+            Direction.North => 90,
+            Direction.East => 0,
+            Direction.South => 270,
+            Direction.West => 180,
             _ => throw new NotImplementedException(),
         };
+        transform.localEulerAngles = euler;
     }
 
     public void ActionDirection(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -93,9 +66,25 @@ public class PlayerDrummer : MonoBehaviour
         NoteType actionType = Vector2ToAction(directionalInput);
 
         LaneManager.Instance.CheckHit(facingDirection, actionType);
+
+        switch (actionType)
+        {
+            case NoteType.Swat:
+                anim.SetTrigger("Swat");
+                break;
+            case NoteType.Stomp:
+                anim.SetTrigger("Swat");
+                break;
+            case NoteType.Spray:
+                anim.SetTrigger("Swat");
+                break;
+            case NoteType.Bat:
+                anim.SetTrigger("Swat");
+                break;
+        };
     }
 
-    private int DirectionToInt(Direction dir) => dir switch
+private int DirectionToInt(Direction dir) => dir switch
     {
         Direction.North => 0,
         Direction.South => 1,
