@@ -41,13 +41,6 @@ public class PlayerDrummer : MonoBehaviour
         controls.FaceDirection.performed += FaceDirection;
     }
 
-    private void Up_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        if (!obj.started) return;
-
-        print("Hit button");
-    }
-
     private void OnDisable()
     {
         controls.Disable();
