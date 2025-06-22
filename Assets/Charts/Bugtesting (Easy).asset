@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b481a42b7774f844da30f636e137a2a2, type: 3}
-  m_Name: Song1
+  m_Name: Bugtesting (Easy)
   m_EditorClassIdentifier: 
   bpm: 120
-  name: Song1
-  composer: Nintendo
+  name: Bugtesting (Easy)
+  composer: J_Davis
   length: 1:43
   song: {fileID: 8300000, guid: 4fb2238d29e4b174b85057bff31fb21a, type: 3}
