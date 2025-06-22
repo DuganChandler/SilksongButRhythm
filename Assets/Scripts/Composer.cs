@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,6 +18,8 @@ public class Composer : MonoBehaviour {
 
     [SerializeField] private GameObject songStartingPanel;
     [SerializeField] private TextMeshProUGUI songStartingText;
+
+    public static event Action OnSongEnd;
 
     private AudioSource audioSource;
     private double dspStartTime;
@@ -89,6 +92,12 @@ public class Composer : MonoBehaviour {
             noteNode.Init(spawnPos, hitPos, removePos, beatsShownInAdvance, noteNode.noteData.beat, 0.5f);
 
             nextIndex++;
+        }
+
+        if (songPosition > song.length) {
+            songStarted = false;
+            OnSongEnd?.Invoke();
+            Debug.Log("Song is complete!");
         }
     }
 
