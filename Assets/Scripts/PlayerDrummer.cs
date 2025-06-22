@@ -2,8 +2,11 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class PlayerDrummer : MonoBehaviour
 {
+    private Animator anim;
+
     private PlayerControls playerActions;
     private PlayerControls.PlayerActions controls;
 
@@ -13,6 +16,8 @@ public class PlayerDrummer : MonoBehaviour
     {
         playerActions = new();
         controls = playerActions.Player;
+
+        TryGetComponent(out anim);
     }
 
     private void OnEnable()
@@ -40,6 +45,17 @@ public class PlayerDrummer : MonoBehaviour
         if (direction == facingDirection) return;
 
         facingDirection = direction;
+
+        Vector3 euler = transform.localEulerAngles;
+        euler.z = facingDirection switch
+        {
+            Direction.North => 90,
+            Direction.East => 0,
+            Direction.South => 270,
+            Direction.West => 180,
+            _ => throw new NotImplementedException(),
+        };
+        transform.localEulerAngles = euler;
     }
 
     public void ActionDirection(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -50,9 +66,25 @@ public class PlayerDrummer : MonoBehaviour
         NoteType actionType = Vector2ToAction(directionalInput);
 
         LaneManager.Instance.CheckHit(facingDirection, actionType);
+
+        switch (actionType)
+        {
+            case NoteType.Swat:
+                anim.SetTrigger("Swat");
+                break;
+            case NoteType.Stomp:
+                anim.SetTrigger("Swat");
+                break;
+            case NoteType.Spray:
+                anim.SetTrigger("Swat");
+                break;
+            case NoteType.Bat:
+                anim.SetTrigger("Swat");
+                break;
+        };
     }
 
-    private int DirectionToInt(Direction dir) => dir switch
+private int DirectionToInt(Direction dir) => dir switch
     {
         Direction.North => 0,
         Direction.South => 1,
