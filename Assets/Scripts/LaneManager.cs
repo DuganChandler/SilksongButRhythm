@@ -136,8 +136,9 @@ public class LaneManager : MonoBehaviour
         // Check action
         if (action != noteToCheck.noteData.noteType)
         {
-            // Wrong note behavior
-            // return;
+            //NoteCompletedAction?.Invoke(Rank.Miss);
+            //Destroy(noteToCheck.gameObject);
+            //return;
         }
 
         //// Check accuracy
