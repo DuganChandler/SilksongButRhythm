@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: f15d8039afef25548ac5f1ec525ff220
+guid: 8dc0468afc20dad4a914839b49000448
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9042903034389788816
-    second: Beet Neutral_0
+      213: 7336317917242561576
+    second: Beet Yellow Swat-Sheet_0
+  - first:
+      213: 6604578360229330661
+    second: Beet Yellow Swat-Sheet_1
+  - first:
+      213: 7772488462724826279
+    second: Beet Yellow Swat-Sheet_2
+  - first:
+      213: 443809043159811101
+    second: Beet Yellow Swat-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,11 +55,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 0
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.413, y: 0.35}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -100,23 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Beet Neutral_0
+      name: Beet_SwatYellow_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1
-        width: 41
-        height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 0
+        width: 176
+        height: 64
+      alignment: 9
+      pivot: {x: 0.35, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 098fa1ff568de7d70800000000000000
-      internalID: 9042903034389788816
+      spriteID: ae53101b27dbc7343b57176dc04c1512
+      internalID: -1641186293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beet_SwatYellow_1
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 176
+        height: 64
+      alignment: 9
+      pivot: {x: 0.35, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3fd98305ed35d44388d31b47bfa6022
+      internalID: 914168255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beet_SwatYellow_2
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 176
+        height: 64
+      alignment: 9
+      pivot: {x: 0.35, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c688cabea72e9ea4ea325b454587b236
+      internalID: 1231822900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beet_SwatYellow_3
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 176
+        height: 64
+      alignment: 9
+      pivot: {x: 0.35, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f49abf055c49d8042b70b03f0384451f
+      internalID: 875524412
       vertices: []
       indices: 
       edges: []
@@ -125,8 +200,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: e4a6a661952372e4a88ba3227ef68977
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Beet Neutral_0: 9042903034389788816
+      Beet_SwatYellow_0: -1641186293
+      Beet_SwatYellow_1: 914168255
+      Beet_SwatYellow_2: 1231822900
+      Beet_SwatYellow_3: 875524412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

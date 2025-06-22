@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Anim_BeetSwat
+  m_Name: Anim_BeetStomp
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,13 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1641186293, guid: 8dc0468afc20dad4a914839b49000448, type: 3}
+      value: {fileID: -1540842436, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
     - time: 0.016666668
-      value: {fileID: 914168255, guid: 8dc0468afc20dad4a914839b49000448, type: 3}
+      value: {fileID: -1707502795, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
     - time: 0.05
-      value: {fileID: 1231822900, guid: 8dc0468afc20dad4a914839b49000448, type: 3}
+      value: {fileID: 1566032328, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
+    - time: 0.13333334
+      value: {fileID: 1556541571, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
     - time: 0.15
-      value: {fileID: -1641186293, guid: 8dc0468afc20dad4a914839b49000448, type: 3}
+      value: {fileID: -1540842436, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,10 +52,11 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1641186293, guid: 8dc0468afc20dad4a914839b49000448, type: 3}
-    - {fileID: 914168255, guid: 8dc0468afc20dad4a914839b49000448, type: 3}
-    - {fileID: 1231822900, guid: 8dc0468afc20dad4a914839b49000448, type: 3}
-    - {fileID: -1641186293, guid: 8dc0468afc20dad4a914839b49000448, type: 3}
+    - {fileID: -1540842436, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
+    - {fileID: -1707502795, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
+    - {fileID: 1566032328, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
+    - {fileID: 1556541571, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
+    - {fileID: -1540842436, guid: 0432351eac72d0d46898b19010525f6e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

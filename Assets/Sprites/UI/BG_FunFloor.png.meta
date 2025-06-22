@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f15d8039afef25548ac5f1ec525ff220
+guid: f889bf9d0b8d9b44587d282922a41de9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9042903034389788816
-    second: Beet Neutral_0
+      213: 1676002704958030761
+    second: Fun_Floor_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,9 +49,9 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 0
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.413, y: 0.35}
-  spritePixelsToUnits: 32
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Beet Neutral_0
+      name: Fun_Floor_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1
-        width: 41
-        height: 57
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 098fa1ff568de7d70800000000000000
-      internalID: 9042903034389788816
+      spriteID: 9a30e9f849b524710800000000000000
+      internalID: 1676002704958030761
       vertices: []
       indices: 
       edges: []
@@ -126,7 +126,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Beet Neutral_0: 9042903034389788816
+      Fun_Floor_0: 1676002704958030761
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -10,7 +10,7 @@ public class PlayerDrummer : MonoBehaviour
     private PlayerControls playerActions;
     private PlayerControls.PlayerActions controls;
 
-    private Direction facingDirection = Direction.North;
+    private Direction facingDirection = Direction.East;
 
     private void Awake()
     {
@@ -65,23 +65,23 @@ public class PlayerDrummer : MonoBehaviour
 
         NoteType actionType = Vector2ToAction(directionalInput);
 
-        LaneManager.Instance.CheckHit(facingDirection, actionType);
-
         switch (actionType)
         {
             case NoteType.Swat:
                 anim.SetTrigger("Swat");
                 break;
             case NoteType.Stomp:
-                anim.SetTrigger("Swat");
+                anim.SetTrigger("Stomp");
                 break;
             case NoteType.Spray:
-                anim.SetTrigger("Swat");
+                anim.SetTrigger("Spray");
                 break;
             case NoteType.Bat:
-                anim.SetTrigger("Swat");
+                anim.SetTrigger("Poke");
                 break;
         };
+
+        LaneManager.Instance.CheckHit(facingDirection, actionType);
     }
 
 private int DirectionToInt(Direction dir) => dir switch

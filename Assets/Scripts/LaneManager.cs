@@ -28,11 +28,13 @@ public class LaneManager : MonoBehaviour
     private void OnEnable()
     {
         NoteNode.OnDeath += RemoveNodeFromLane;
+        NoteNode.OnHitFood += CountMiss;
     }
 
     private void OnDisable()
     {
         NoteNode.OnDeath -= RemoveNodeFromLane;
+        NoteNode.OnHitFood -= CountMiss;
     }
 
     #region Lane Methods
@@ -161,6 +163,12 @@ public class LaneManager : MonoBehaviour
         }
 
         Destroy(noteToCheck.gameObject);
+    }
+
+    private void CountMiss()
+    {
+        NoteCompletedAction?.Invoke(Rank.Miss);
+        print("Miss: Late");
     }
 
     #endregion
