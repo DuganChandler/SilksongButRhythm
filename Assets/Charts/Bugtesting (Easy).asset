@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b481a42b7774f844da30f636e137a2a2, type: 3}
+  m_Name: Bugtesting (Easy)
+  m_EditorClassIdentifier: 
+  bpm: 120
+  name: Bugtesting (Easy)
+  composer: J_Davis
+  length: 1:43
+  song: {fileID: 8300000, guid: 4fb2238d29e4b174b85057bff31fb21a, type: 3}
+  albumArt: {fileID: -3096113947655558919, guid: 559aae8e537f44f41a459187a6468a5b, type: 3}
