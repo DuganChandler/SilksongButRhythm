@@ -12,7 +12,11 @@ public class ScoreHolder : MonoBehaviour
 
     [Header("In-Scene Elements")]
     [SerializeField] private TextMeshProUGUI scoreTextBox;
+    [Space(5)]
     [SerializeField] private Animator rankBoxAnim;
+    [Space(5)]
+    [SerializeField] private Animator comboBoxAnim;
+    [SerializeField] private TextMeshProUGUI comboTextBox;
 
     [Header("Score Values")]
     [SerializeField] private int perfectValue = 1000;
@@ -59,22 +63,28 @@ public class ScoreHolder : MonoBehaviour
             case Rank.Perfect:
                 PerfectScoreAmount++;
                 currentCombo++;
+                if (currentCombo == 10) comboBoxAnim.SetTrigger("Open");
                 break;
             case Rank.Good:
                 GoodScoreAmount++;
                 currentCombo++;
+                if (currentCombo == 10) comboBoxAnim.SetTrigger("Open");
                 break;
             case Rank.Meh:
                 MehScoreAmount++;
                 currentCombo++;
+                if (currentCombo == 10) comboBoxAnim.SetTrigger("Open");
                 break;
             case Rank.Miss:
                 MissAmount++;
+                comboBoxAnim.SetTrigger("Close");
                 currentCombo = 0;
                 break;
         }
 
         rankBoxAnim.SetTrigger(rank.ToString());
+
+        comboTextBox.text = currentCombo.ToString();
 
         if (currentCombo > MaxCombo) MaxCombo = currentCombo;
         scoreTextBox.text = TotalScore.ToString();
