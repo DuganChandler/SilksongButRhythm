@@ -6,7 +6,9 @@ public class ScoreHolder : MonoBehaviour
 {
     public static ScoreHolder Instance { get; private set; }
 
+    [Header("Scenes")]
     [SerializeField] private int resultsSceneIndex;
+    [SerializeField] private int lossSceneIndex;
 
     [Header("In-Scene Elements")]
     [SerializeField] private TextMeshProUGUI scoreTextBox;
@@ -38,15 +40,15 @@ public class ScoreHolder : MonoBehaviour
     private void OnEnable()
     {
         LaneManager.NoteCompletedAction += RegisterNote;
-        HealthManager.OnAllHealthLoss += GoToResultsScreen;
-        Composer.OnSongEnd += GoToResultsScreen;
+        HealthManager.OnAllHealthLoss += GoToWinScreen;
+        Composer.OnSongEnd += GoToLoseScreen;
     }
 
     private void OnDisable()
     {
         LaneManager.NoteCompletedAction -= RegisterNote;
-        HealthManager.OnAllHealthLoss -= GoToResultsScreen;
-        Composer.OnSongEnd -= GoToResultsScreen;
+        HealthManager.OnAllHealthLoss -= GoToWinScreen;
+        Composer.OnSongEnd -= GoToLoseScreen;
     }
 
     private void RegisterNote(Rank rank)
@@ -72,9 +74,15 @@ public class ScoreHolder : MonoBehaviour
         scoreTextBox.text = TotalScore.ToString();
     }
 
-    private void GoToResultsScreen()
+    private void GoToWinScreen()
     {
         SceneManager.LoadScene(resultsSceneIndex);
+        scoreTextBox.text = "";
+    }
+
+    private void GoToLoseScreen()
+    {
+        SceneManager.LoadScene(lossSceneIndex);
         scoreTextBox.text = "";
     }
 

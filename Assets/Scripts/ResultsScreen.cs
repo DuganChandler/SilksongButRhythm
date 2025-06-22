@@ -31,7 +31,26 @@ public class ResultsScreen : MonoBehaviour
 
     private IEnumerator CountTotalCoroutine()
     {
+        perfectTextBox.text = ScoreHolder.Instance.PerfectScoreAmount.ToString("000");
+        goodTextBox.text = ScoreHolder.Instance.GoodScoreAmount.ToString("000");
+        mehTextBox.text = ScoreHolder.Instance.MehScoreAmount.ToString("000");
+        missTextBox.text = ScoreHolder.Instance.MissAmount.ToString("000");
+
+        yield return new WaitForSeconds(timeBetweenSections);
+
         float timer = 0;
+        float maxCombo = ScoreHolder.Instance.MaxCombo;
+        while (timer < countScoreTime)
+        {
+            timer += Time.fixedDeltaTime;
+            comboTextBox.text = $"{Mathf.Round(maxCombo * (timer / countScoreTime)):000}";
+            yield return null;
+        }
+        comboTextBox.text = maxCombo.ToString("000");
+
+        yield return new WaitForSeconds(timeBetweenSections);
+
+        timer = 0;
         float totalScore = ScoreHolder.Instance.TotalScore;
 
         while (timer < countScoreTime)
@@ -41,26 +60,5 @@ public class ResultsScreen : MonoBehaviour
             yield return null;
         }
         scoreTextBox.text = totalScore.ToString("000000");
-
-        yield return new WaitForSeconds(timeBetweenSections);
-
-        rankDisplayBox.SetActive(true);
-        perfectTextBox.text = ScoreHolder.Instance.PerfectScoreAmount.ToString("000");
-        goodTextBox.text = ScoreHolder.Instance.GoodScoreAmount.ToString("000");
-        mehTextBox.text = ScoreHolder.Instance.MehScoreAmount.ToString("000");
-        missTextBox.text = ScoreHolder.Instance.MissAmount.ToString("000");
-        comboDisplayBox.SetActive(true);
-
-        yield return new WaitForSeconds(timeBetweenSections);
-
-        timer = 0;
-        float maxCombo = ScoreHolder.Instance.MaxCombo;
-        while (timer < countScoreTime)
-        {
-            timer += Time.fixedDeltaTime;
-            comboTextBox.text = $"{Mathf.Round(maxCombo * (timer / countScoreTime)):000}";
-            yield return null;
-        }
-        comboTextBox.text = maxCombo.ToString("000");
     }
 }
