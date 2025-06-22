@@ -57,19 +57,22 @@ public class ScoreHolder : MonoBehaviour
         {
             case Rank.Perfect:
                 PerfectScoreAmount++;
+                currentCombo++;
                 break;
             case Rank.Good:
                 GoodScoreAmount++;
+                currentCombo++;
                 break;
             case Rank.Meh:
                 MehScoreAmount++;
+                currentCombo++;
                 break;
             case Rank.Miss:
                 MissAmount++;
+                currentCombo = 0;
                 break;
         }
 
-        if (rank != Rank.Miss) currentCombo++;
         if (currentCombo > MaxCombo) MaxCombo = currentCombo;
         scoreTextBox.text = TotalScore.ToString();
     }
