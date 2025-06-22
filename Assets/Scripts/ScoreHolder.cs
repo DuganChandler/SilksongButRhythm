@@ -20,8 +20,10 @@ public class ScoreHolder : MonoBehaviour
     public int GoodScoreAmount { get; private set; }
     public int MehScoreAmount { get; private set; }
     public int MissAmount { get; private set; }
-
     public int TotalScore => (PerfectScoreAmount * perfectValue) + (GoodScoreAmount * goodValue) + (MehScoreAmount + mehValue);
+    public int MaxCombo { get; private set; }
+
+    private int currentCombo;
 
     private void Awake()
     {
@@ -65,6 +67,8 @@ public class ScoreHolder : MonoBehaviour
                 break;
         }
 
+        if (rank != Rank.Miss) currentCombo++;
+        if (currentCombo > MaxCombo) MaxCombo = currentCombo;
         scoreTextBox.text = TotalScore.ToString();
     }
 
