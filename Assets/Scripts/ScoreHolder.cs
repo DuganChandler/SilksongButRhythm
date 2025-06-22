@@ -34,12 +34,9 @@ public class ScoreHolder : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
+        if (Instance != null) Destroy(Instance.gameObject);
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()
@@ -94,12 +91,18 @@ public class ScoreHolder : MonoBehaviour
     {
         SceneManager.LoadScene(resultsSceneIndex);
         scoreTextBox.text = "";
+        rankBoxAnim.gameObject.SetActive(false);
+        comboBoxAnim.gameObject.SetActive(false);
+        scoreTextBox.transform.parent.gameObject.SetActive(false);
     }
 
     private void GoToLoseScreen()
     {
         SceneManager.LoadScene(lossSceneIndex);
         scoreTextBox.text = "";
+        rankBoxAnim.gameObject.SetActive(false);
+        comboBoxAnim.gameObject.SetActive(false);
+        scoreTextBox.transform.parent.gameObject.SetActive(false);
     }
 
     [ContextMenu("Print Scores")]

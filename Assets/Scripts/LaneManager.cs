@@ -45,6 +45,7 @@ public class LaneManager : MonoBehaviour
         else Instance = this;
 
         mode = GameManager.Instance.mode;
+        TryGetComponent(out audioSource);
     }
 
     private void OnEnable()

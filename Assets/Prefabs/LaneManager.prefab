@@ -58,9 +58,9 @@ MonoBehaviour:
   eastLaneAnim: {fileID: 2700662761365221637}
   westLaneAnim: {fileID: 5976005071972773624}
   pokeSFX: {fileID: 8300000, guid: 00e9d0a47896428458e0690039df11e7, type: 3}
-  swatSFX: {fileID: 0}
-  stompSFX: {fileID: 8300000, guid: 52e05c6e1897b8941a2d64251fb788e3, type: 3}
-  spraySFX: {fileID: 0}
+  swatSFX: {fileID: 8300000, guid: 4d4557cab6324bf4693fe73ce9404d4d, type: 3}
+  stompSFX: {fileID: 8300000, guid: 178fcf31f89cb4a4f87c4f902b87cca4, type: 3}
+  spraySFX: {fileID: 8300000, guid: 47adfc6182847444e8cc605e1d5e7853, type: 3}
   missSFX: {fileID: 8300000, guid: 8a302aa9298250346958195eeea3959b, type: 3}
 --- !u!82 &3506749157538372974
 AudioSource:
@@ -74,7 +74,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

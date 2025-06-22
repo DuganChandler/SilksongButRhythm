@@ -890,8 +890,8 @@ Canvas:
   m_GameObject: {fileID: 962600713}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 443397114}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -901,8 +901,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1231785115
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &962600717
 RectTransform:
@@ -2615,6 +2615,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3506749157538372974, guid: 3b3a8e85b6b822f4e8faf6135b13ad4a, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3917259553640173201, guid: 3b3a8e85b6b822f4e8faf6135b13ad4a, type: 3}
       propertyPath: m_Name
       value: LaneManager
