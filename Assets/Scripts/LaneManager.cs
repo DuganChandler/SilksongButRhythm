@@ -153,9 +153,9 @@ public class LaneManager : MonoBehaviour
         // Check action
         if (action != noteToCheck.noteData.noteType)
         {
-            //NoteCompletedAction?.Invoke(Rank.Miss);
-            //Destroy(noteToCheck.gameObject);
-            //return;
+            NoteCompletedAction?.Invoke(Rank.Miss);
+            Destroy(noteToCheck.gameObject);
+            return;
         }
 
         //// Check accuracy
