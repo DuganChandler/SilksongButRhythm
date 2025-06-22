@@ -49,6 +49,7 @@ public class SongSelectManager : MonoBehaviour {
             Transform buttonTransform = buttonObj.GetComponent<Transform>();
 
             songItem.songName.text = currentChart.Name;
+            songItem.albumArt.sprite = currentChart.AlbumArt;
 
             Button currentButton = buttonObj.GetComponent<Button>();
             currentButton.onClick.AddListener(() => OnSongButtonClicked(currentChart.Name, i));
