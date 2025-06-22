@@ -25,10 +25,16 @@ public class LaneManager : MonoBehaviour
 
     public static event Action<Rank> NoteCompletedAction;
 
+    public const string BugMania = "BugMania";
+    public const string SimpleBug = "SimpleBug";
+    private string mode;
+
     private void Awake()
     {
         if (Instance != null) Destroy(gameObject);
         else Instance = this;
+
+        mode = GameManager.Instance.mode;
     }
 
     private void OnEnable()
@@ -151,7 +157,7 @@ public class LaneManager : MonoBehaviour
         }
 
         // Check action
-        if (action != noteToCheck.noteData.noteType)
+        if (mode == BugMania && action != noteToCheck.noteData.noteType)
         {
             NoteCompletedAction?.Invoke(Rank.Miss);
             Destroy(noteToCheck.gameObject);
