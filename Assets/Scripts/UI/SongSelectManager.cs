@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -62,8 +63,9 @@ public class SongSelectManager : MonoBehaviour {
         currentSelectedChart = chartLoader.GetChartByName(name);
     }
 
-    public void OnConfirm() {
+    public void OnModeSelect(string mode) {
         GameManager.Instance.currentSelectedChart = currentSelectedChart;
+        GameManager.Instance.mode = mode;
         confirmPanel.SetActive(false);
         SceneManager.LoadScene("ChartPlayer");
     }
