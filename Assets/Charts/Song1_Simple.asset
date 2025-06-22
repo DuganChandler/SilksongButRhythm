@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096efc53403bb11478245e30f6ef8d84, type: 3}
-  m_Name: ChartLibrary
+  m_Script: {fileID: 11500000, guid: b481a42b7774f844da30f636e137a2a2, type: 3}
+  m_Name: Song1_Simple
   m_EditorClassIdentifier: 
-  charts:
-  - {fileID: 11400000, guid: cea598fcfe8db5841879d4e73cb24f71, type: 2}
-  - {fileID: 11400000, guid: f31fb8522c98d36498332da7058ede1d, type: 2}
+  bpm: 120
+  name: Song1_Simple
+  composer: God
+  length: 1:43
+  song: {fileID: 8300000, guid: 4fb2238d29e4b174b85057bff31fb21a, type: 3}
