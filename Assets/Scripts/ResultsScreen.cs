@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 public class ResultsScreen : MonoBehaviour
 {
     [Header("In-Scene Elements")]
@@ -26,7 +27,16 @@ public class ResultsScreen : MonoBehaviour
     [Header("Scenes")]
     [SerializeField] private int songSelectSceneIndex;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip sectionAudio;
+
     private Coroutine countTotalCoroutine;
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        TryGetComponent(out audioSource);
+    }
 
     private void Start()
     {
@@ -41,6 +51,7 @@ public class ResultsScreen : MonoBehaviour
         goodTextBox.text = ScoreHolder.Instance.GoodScoreAmount.ToString("000");
         mehTextBox.text = ScoreHolder.Instance.MehScoreAmount.ToString("000");
         missTextBox.text = ScoreHolder.Instance.MissAmount.ToString("000");
+        audioSource.PlayOneShot(sectionAudio);
 
         yield return new WaitForSeconds(timeBetweenSections);
 
@@ -53,6 +64,7 @@ public class ResultsScreen : MonoBehaviour
             yield return null;
         }
         comboTextBox.text = maxCombo.ToString("000");
+        audioSource.PlayOneShot(sectionAudio);
 
         yield return new WaitForSeconds(timeBetweenSections);
 
@@ -66,10 +78,12 @@ public class ResultsScreen : MonoBehaviour
             yield return null;
         }
         scoreTextBox.text = totalScore.ToString("000000");
+        audioSource.PlayOneShot(sectionAudio);
 
         yield return new WaitForSeconds(timeBetweenSections);
 
         pressContinueTextBox.SetActive(true);
+        audioSource.PlayOneShot(sectionAudio);
 
         while (!Input.GetMouseButton(0))
         {
