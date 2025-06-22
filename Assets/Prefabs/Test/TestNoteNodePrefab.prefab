@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   roach: {fileID: 5922201424431230406, guid: ef4cf2ef93521d8468ca0504317dc9c7, type: 3}
   fly: {fileID: 6048862160296339182, guid: d1647728db4a5e0438ac2c702dd842de, type: 3}
   ant: {fileID: 8995575377426311220, guid: 4a60cce9405e9a545b3a25aee5a92427, type: 3}
-  dung: {fileID: 9042903034389788816, guid: f15d8039afef25548ac5f1ec525ff220, type: 3}
+  dung: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   noteData:
     beat: 0
     lane: 0

@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultsSceneIndex: 3
+  lossSceneIndex: 4
   scoreTextBox: {fileID: 3845257197569019503}
   perfectValue: 1000
   goodValue: 500

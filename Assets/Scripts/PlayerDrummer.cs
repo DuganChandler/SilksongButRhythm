@@ -65,8 +65,6 @@ public class PlayerDrummer : MonoBehaviour
 
         NoteType actionType = Vector2ToAction(directionalInput);
 
-        LaneManager.Instance.CheckHit(facingDirection, actionType);
-
         switch (actionType)
         {
             case NoteType.Swat:
@@ -82,6 +80,8 @@ public class PlayerDrummer : MonoBehaviour
                 anim.SetTrigger("Swat");
                 break;
         };
+
+        LaneManager.Instance.CheckHit(facingDirection, actionType);
     }
 
 private int DirectionToInt(Direction dir) => dir switch
