@@ -19,12 +19,12 @@ public class HealthManager : MonoBehaviour
 
     private void OnEnable()
     {
-        NoteNode.HitFood += LoseHealth;
+        NoteNode.OnHitFood += LoseHealth;
     }
 
     private void OnDisable()
     {
-        NoteNode.HitFood -= LoseHealth;
+        NoteNode.OnHitFood -= LoseHealth;
     }
 
     private void LoseHealth()
