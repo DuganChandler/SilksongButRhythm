@@ -10,7 +10,7 @@ public class PlayerDrummer : MonoBehaviour
     private PlayerControls playerActions;
     private PlayerControls.PlayerActions controls;
 
-    private Direction facingDirection = Direction.North;
+    private Direction facingDirection = Direction.East;
 
     private void Awake()
     {

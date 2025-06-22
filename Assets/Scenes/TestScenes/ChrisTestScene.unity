@@ -1434,6 +1434,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2079829420570459030, guid: b09369cfc0ee2844a90f1608dff9f6c6, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079829420570459030, guid: b09369cfc0ee2844a90f1608dff9f6c6, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7069649613276177415, guid: b09369cfc0ee2844a90f1608dff9f6c6, type: 3}
       propertyPath: m_Name
       value: PlayerDrummer
