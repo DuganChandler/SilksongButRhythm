@@ -39,6 +39,12 @@ public class NoteNode : MonoBehaviour {
     private float beatOfThisNote;
     private float deathOffsetBeats;
     private float spawnBeat, hitBeat, deathBeat;
+    private SpriteRenderer spriteRenderer;
+
+    [SerializeField] private Sprite roach;
+    [SerializeField] private Sprite fly;
+    [SerializeField] private Sprite ant;
+    [SerializeField] private Sprite dung;
     
     public NoteData noteData;
 
@@ -69,11 +75,32 @@ public class NoteNode : MonoBehaviour {
         this.beatOfThisNote = beatOfNote;
         this.deathOffsetBeats = deathOffsetBeats;
 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        SetSprite(noteData.noteType);
+
         spawnBeat = beatOfThisNote - beatsShownInAdvance;
         hitBeat   = beatOfThisNote;
         deathBeat = beatOfThisNote + deathOffsetBeats;
 
         transform.position = spawnPos;
+    }
+
+    public void SetSprite(NoteType noteType) {
+        switch (noteType) {
+            case NoteType.Swat:
+                spriteRenderer.sprite = fly;
+                break;
+            case NoteType.Stomp:
+                spriteRenderer.sprite = ant;
+                break;
+            case NoteType.Spray:
+                spriteRenderer.sprite = roach;
+                break;
+            case NoteType.Bat:
+                spriteRenderer.sprite = dung;
+                break;
+        }
+
     }
 
     void OnDestroy() {
