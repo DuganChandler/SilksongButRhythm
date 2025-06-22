@@ -12,6 +12,7 @@ public class ScoreHolder : MonoBehaviour
 
     [Header("In-Scene Elements")]
     [SerializeField] private TextMeshProUGUI scoreTextBox;
+    [SerializeField] private Animator rankBoxAnim;
 
     [Header("Score Values")]
     [SerializeField] private int perfectValue = 1000;
@@ -72,6 +73,8 @@ public class ScoreHolder : MonoBehaviour
                 currentCombo = 0;
                 break;
         }
+
+        rankBoxAnim.SetTrigger(rank.ToString());
 
         if (currentCombo > MaxCombo) MaxCombo = currentCombo;
         scoreTextBox.text = TotalScore.ToString();
