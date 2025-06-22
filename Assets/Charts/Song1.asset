@@ -15,4 +15,5 @@ MonoBehaviour:
   bpm: 120
   name: Song1
   composer: Nintendo
-  length: 4:25
+  length: 1:43
+  song: {fileID: 8300000, guid: 4fb2238d29e4b174b85057bff31fb21a, type: 3}
