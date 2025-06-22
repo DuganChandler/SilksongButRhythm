@@ -13,5 +13,11 @@ public class GameManager : MonoBehaviour {
         } 
     }
 
+    public const string BugMania = "BugMania";
+    public const string SimpleBug = "SimpleBug";
+
     public Chart currentSelectedChart;
+
+    public string mode;
 }
+

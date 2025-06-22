@@ -8,11 +8,13 @@ public class ChartData : ScriptableObject {
     [SerializeField] string composer;
     [SerializeField] string length;
     [SerializeField] AudioClip song;
+    [SerializeField] Sprite albumArt;
 
     public int Bpm => bpm;
     public string Name => name;
     public string Composer => composer;
     public string Length => length;
     public AudioClip Song => song;
+    public Sprite AlbumArt => albumArt;
 
 }

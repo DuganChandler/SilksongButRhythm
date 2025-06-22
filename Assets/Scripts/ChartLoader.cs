@@ -11,7 +11,6 @@ public class ChartLoader : MonoBehaviour {
 
     void Awake() {
         LoadCharts();     
-        GetChartByName("Song1");
     }
 
     public void LoadCharts() {

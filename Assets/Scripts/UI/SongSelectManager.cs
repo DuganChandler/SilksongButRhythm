@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -48,6 +49,7 @@ public class SongSelectManager : MonoBehaviour {
             Transform buttonTransform = buttonObj.GetComponent<Transform>();
 
             songItem.songName.text = currentChart.Name;
+            songItem.albumArt.sprite = currentChart.AlbumArt;
 
             Button currentButton = buttonObj.GetComponent<Button>();
             currentButton.onClick.AddListener(() => OnSongButtonClicked(currentChart.Name, i));
@@ -62,8 +64,9 @@ public class SongSelectManager : MonoBehaviour {
         currentSelectedChart = chartLoader.GetChartByName(name);
     }
 
-    public void OnConfirm() {
+    public void OnModeSelect(string mode) {
         GameManager.Instance.currentSelectedChart = currentSelectedChart;
+        GameManager.Instance.mode = mode;
         confirmPanel.SetActive(false);
         SceneManager.LoadScene("ChartPlayer");
     }
