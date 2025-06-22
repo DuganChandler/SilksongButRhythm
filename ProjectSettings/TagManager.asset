@@ -44,6 +44,9 @@ TagManager:
   - name: Lane
     uniqueID: 1231785115
     locked: 0
+  - name: Notes
+    uniqueID: 3678690425
+    locked: 0
   - name: Characters
     uniqueID: 4182329991
     locked: 0

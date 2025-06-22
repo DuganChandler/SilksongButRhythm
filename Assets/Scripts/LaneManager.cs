@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class LaneManager : MonoBehaviour
 {
     public static LaneManager Instance { get; private set; }
@@ -12,6 +13,19 @@ public class LaneManager : MonoBehaviour
     [SerializeField] private float goodDistance = 0.5f;
     [SerializeField] private float mehDistance = 1f;
 
+    [Header("Lane Animators")]
+    [SerializeField] private Animator northLaneAnim;
+    [SerializeField] private Animator southLaneAnim;
+    [SerializeField] private Animator eastLaneAnim;
+    [SerializeField] private Animator westLaneAnim;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip pokeSFX;
+    [SerializeField] private AudioClip swatSFX;
+    [SerializeField] private AudioClip stompSFX;
+    [SerializeField] private AudioClip spraySFX;
+    [SerializeField] private AudioClip missSFX;
+
     private Queue<NoteNode> northLane = new();
     private Queue<NoteNode> southLane = new();
     private Queue<NoteNode> eastLane = new();
@@ -19,10 +33,19 @@ public class LaneManager : MonoBehaviour
 
     public static event Action<Rank> NoteCompletedAction;
 
+    public const string BugMania = "BugMania";
+    public const string SimpleBug = "SimpleBug";
+    private string mode;
+
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (Instance != null) Destroy(gameObject);
         else Instance = this;
+
+        mode = GameManager.Instance.mode;
+        TryGetComponent(out audioSource);
     }
 
     private void OnEnable()
@@ -91,6 +114,15 @@ public class LaneManager : MonoBehaviour
         _ => throw new System.NotImplementedException(),
     };
 
+    private Animator GetLaneAnim(Direction direction) => direction switch
+    {
+        Direction.North => northLaneAnim,
+        Direction.South => southLaneAnim,
+        Direction.East => eastLaneAnim,
+        Direction.West => westLaneAnim,
+        _ => throw new System.NotImplementedException(),
+    };
+
     private void PrintLane(Direction direction)
     {
         Queue<NoteNode> lane = GetLane(direction);
@@ -109,6 +141,25 @@ public class LaneManager : MonoBehaviour
 
     public void CheckHit(Direction lane, NoteType action)
     {
+        GetLaneAnim(lane).SetTrigger(action.ToString());
+
+        // Play Audio
+        switch (action)
+        {
+            case NoteType.swat:
+                audioSource.PlayOneShot(swatSFX);
+                break;
+            case NoteType.stomp:
+                audioSource.PlayOneShot(stompSFX);
+                break;
+            case NoteType.spray:
+                audioSource.PlayOneShot(spraySFX);
+                break;
+            case NoteType.poke:
+                audioSource.PlayOneShot(pokeSFX);
+                break;
+        }
+
         // Getting the note in the right lane
         NoteNode noteToCheck;
         bool canHitSomething = lane switch
@@ -134,10 +185,12 @@ public class LaneManager : MonoBehaviour
         }
 
         // Check action
-        if (action != noteToCheck.noteData.noteType)
+        if (mode == BugMania && action != noteToCheck.noteData.noteType)
         {
-            // Wrong note behavior
-            // return;
+            NoteCompletedAction?.Invoke(Rank.Miss);
+            audioSource.PlayOneShot(missSFX);
+            Destroy(noteToCheck.gameObject);
+            return;
         }
 
         //// Check accuracy
@@ -159,6 +212,7 @@ public class LaneManager : MonoBehaviour
         else
         {
             NoteCompletedAction?.Invoke(Rank.Miss);
+            audioSource.PlayOneShot(missSFX);
             print("Miss:" + distanceToNote);
         }
 
@@ -168,6 +222,7 @@ public class LaneManager : MonoBehaviour
     private void CountMiss()
     {
         NoteCompletedAction?.Invoke(Rank.Miss);
+        audioSource.PlayOneShot(missSFX);
         print("Miss: Late");
     }
 

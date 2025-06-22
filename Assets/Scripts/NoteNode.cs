@@ -5,7 +5,7 @@ public enum NoteType {
     swat,
     stomp,
     spray,
-    bat
+    poke
 }
 
 [System.Serializable]
@@ -97,7 +97,7 @@ public class NoteNode : MonoBehaviour {
             case NoteType.spray:
                 spriteRenderer.sprite = roach;
                 break;
-            case NoteType.bat:
+            case NoteType.poke:
                 spriteRenderer.sprite = dung;
                 break;
         }
