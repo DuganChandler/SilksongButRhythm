@@ -128,7 +128,7 @@ public class LaneManager : MonoBehaviour
         float distanceToNote = Mathf.Abs(Composer.songPosInBeats - noteToCheck.noteData.beat);
         if (distanceToNote > noteCheckThreshold) 
         {
-            //return;
+            return;
         }
 
         // Check action
