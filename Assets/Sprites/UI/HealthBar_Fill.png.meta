@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ef4cf2ef93521d8468ca0504317dc9c7
+guid: ad9a8a27e856c334c900beb5e0be074d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5922201424431230406
-    second: General Roach- Front Facing Head_0
+      213: -7651933191365538821
+    second: Health Bar Menu Fill_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: General Roach- Front Facing Head_0
+      name: Health Bar Menu Fill_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 2
-        width: 54
-        height: 61
+        x: 0
+        y: 0
+        width: 355
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6cd298f71d2ef2250800000000000000
-      internalID: 5922201424431230406
+      spriteID: bfbc2abdd4fdec590800000000000000
+      internalID: -7651933191365538821
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      General Roach- Front Facing Head_0: 5922201424431230406
+      Health Bar Menu Fill_0: -7651933191365538821
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

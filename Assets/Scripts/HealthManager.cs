@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private int startingHealth;
+    [SerializeField] private Slider slider;
     
     private int currentHealth;
 
@@ -11,6 +13,7 @@ public class HealthManager : MonoBehaviour
 
     private void Awake()
     {
+        slider.maxValue = startingHealth;
         currentHealth = startingHealth;
     }
 
@@ -27,6 +30,7 @@ public class HealthManager : MonoBehaviour
     private void LoseHealth()
     {
         currentHealth--;
+        slider.value++;
 
         if (currentHealth <= 0)
         {
