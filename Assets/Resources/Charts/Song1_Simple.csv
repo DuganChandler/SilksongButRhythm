@@ -76,7 +76,7 @@ Beat,Lane,Type
 82.5,1,spray
 83.5,0,swat
 84.5,3,bat
-85.5,0,sray
+85.5,0,spray
 86.5,2,stomp
 87.5,0,bat
 88.5,3,stomp
@@ -116,7 +116,7 @@ Beat,Lane,Type
 122.5,3,bat
 123.5,0,bat
 124.5,0,stomp
-125.5,1,bat
+125.5,1,spray
 126.5,1,swat
 127.5,3,spray
 128.5,1,bat
@@ -132,7 +132,7 @@ Beat,Lane,Type
 138.5,0,spray
 139.5,2,spray
 140.5,3,swat
-141.5,2,sray
+141.5,2,spray
 142.5,1,bat
 143.5,3,spray
 144.5,0,swat
