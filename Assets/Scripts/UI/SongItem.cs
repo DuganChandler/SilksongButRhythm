@@ -7,15 +7,12 @@ public class SongItem : MonoBehaviour {
     [SerializeField] public TextMeshProUGUI bpm;
     [SerializeField] public TextMeshProUGUI composer;
     [SerializeField] public Image albumArt;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+
+    public void OnButtonHover() {
+        SFXManager.Instance.PlaySound("Hover");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void OnButtonConfirm() {
+        SFXManager.Instance.PlaySound("Confirm");
     }
 }
