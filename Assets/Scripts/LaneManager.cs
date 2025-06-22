@@ -155,7 +155,7 @@ public class LaneManager : MonoBehaviour
             case NoteType.spray:
                 audioSource.PlayOneShot(spraySFX);
                 break;
-            case NoteType.poke:
+            case NoteType.bat:
                 audioSource.PlayOneShot(pokeSFX);
                 break;
         }
