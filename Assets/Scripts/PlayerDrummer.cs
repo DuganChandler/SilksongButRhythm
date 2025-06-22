@@ -67,16 +67,16 @@ public class PlayerDrummer : MonoBehaviour
 
         switch (actionType)
         {
-            case NoteType.Swat:
+            case NoteType.swat:
                 anim.SetTrigger("Swat");
                 break;
-            case NoteType.Stomp:
+            case NoteType.stomp:
                 anim.SetTrigger("Stomp");
                 break;
-            case NoteType.Spray:
+            case NoteType.spray:
                 anim.SetTrigger("Spray");
                 break;
-            case NoteType.Bat:
+            case NoteType.bat:
                 anim.SetTrigger("Poke");
                 break;
         };
@@ -104,10 +104,10 @@ private int DirectionToInt(Direction dir) => dir switch
 
     private NoteType Vector2ToAction(Vector2 vector)
     {
-        if (vector == Vector2.up) return NoteType.Spray;
-        else if (vector == Vector2.down) return NoteType.Stomp;
-        else if (vector == Vector2.left) return NoteType.Swat;
-        else if (vector == Vector2.right) return NoteType.Bat;
+        if (vector == Vector2.up) return NoteType.spray;
+        else if (vector == Vector2.down) return NoteType.stomp;
+        else if (vector == Vector2.left) return NoteType.swat;
+        else if (vector == Vector2.right) return NoteType.bat;
         else throw new System.NotImplementedException();
     }
 }
