@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResultsScreen : MonoBehaviour
 {
@@ -15,10 +16,15 @@ public class ResultsScreen : MonoBehaviour
     [Space(5)]
     [SerializeField] private GameObject comboDisplayBox;
     [SerializeField] private TextMeshProUGUI comboTextBox;
+    [Space(5)]
+    [SerializeField] private GameObject pressContinueTextBox;
 
     [Header("Settings")]
     [SerializeField] private float countScoreTime = 3;
     [SerializeField] private float timeBetweenSections = 0.5f;
+
+    [Header("Scenes")]
+    [SerializeField] private int songSelectSceneIndex;
 
     private Coroutine countTotalCoroutine;
 
@@ -60,5 +66,17 @@ public class ResultsScreen : MonoBehaviour
             yield return null;
         }
         scoreTextBox.text = totalScore.ToString("000000");
+
+        yield return new WaitForSeconds(timeBetweenSections);
+
+        pressContinueTextBox.SetActive(true);
+
+        while (!Input.GetMouseButton(0))
+        {
+            yield return null;
+        }
+
+        SceneManager.LoadScene(songSelectSceneIndex);
+        yield break;
     }
 }
