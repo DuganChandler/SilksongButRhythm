@@ -40,15 +40,15 @@ public class ScoreHolder : MonoBehaviour
     private void OnEnable()
     {
         LaneManager.NoteCompletedAction += RegisterNote;
-        HealthManager.OnAllHealthLoss += GoToWinScreen;
-        Composer.OnSongEnd += GoToLoseScreen;
+        HealthManager.OnAllHealthLoss += GoToLoseScreen;
+        Composer.OnSongEnd += GoToWinScreen;
     }
 
     private void OnDisable()
     {
         LaneManager.NoteCompletedAction -= RegisterNote;
-        HealthManager.OnAllHealthLoss -= GoToWinScreen;
-        Composer.OnSongEnd -= GoToLoseScreen;
+        HealthManager.OnAllHealthLoss -= GoToLoseScreen;
+        Composer.OnSongEnd -= GoToWinScreen;
     }
 
     private void RegisterNote(Rank rank)
